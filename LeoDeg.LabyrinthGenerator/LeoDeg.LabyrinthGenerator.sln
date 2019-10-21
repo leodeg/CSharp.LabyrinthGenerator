@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabyrinthGenerator", "LabyrinthGenerator\LabyrinthGenerator.csproj", "{0EB82100-5C58-4D8D-8A37-72614FE6D17E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabyrinthGeneratorForms", "LabyrinthGeneratorForms\LabyrinthGeneratorForms.csproj", "{47DFBAC7-8A11-4C06-9850-55CAA62313A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EB82100-5C58-4D8D-8A37-72614FE6D17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB82100-5C58-4D8D-8A37-72614FE6D17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB82100-5C58-4D8D-8A37-72614FE6D17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB82100-5C58-4D8D-8A37-72614FE6D17E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47DFBAC7-8A11-4C06-9850-55CAA62313A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47DFBAC7-8A11-4C06-9850-55CAA62313A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47DFBAC7-8A11-4C06-9850-55CAA62313A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47DFBAC7-8A11-4C06-9850-55CAA62313A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2914D59E-AD3A-4506-B8FE-9DAFE3DF203C}
+	EndGlobalSection
+EndGlobal
