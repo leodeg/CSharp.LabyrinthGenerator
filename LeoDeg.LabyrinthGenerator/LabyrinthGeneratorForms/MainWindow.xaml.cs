@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LabyrinthGenerator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace LabyrinthGeneratorForms
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		MazeGenerator mazeGenerator;
+
 		public MainWindow ()
 		{
 			InitializeComponent ();
+
+			mazeGenerator = new MazeGenerator (10);
+			MessageBox.Show (mazeGenerator.ToString ());
 		}
 	}
 }

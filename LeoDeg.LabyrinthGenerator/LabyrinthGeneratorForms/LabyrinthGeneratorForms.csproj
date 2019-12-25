@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LabyrinthGenerator\LabyrinthGenerator.csproj">
+      <Project>{0eb82100-5c58-4d8d-8a37-72614fe6d17e}</Project>
+      <Name>LabyrinthGenerator</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
