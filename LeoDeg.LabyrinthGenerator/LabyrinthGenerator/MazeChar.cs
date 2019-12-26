@@ -4,15 +4,20 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static LabyrinthGenerator.MazeGenerator;
 
 namespace LabyrinthGenerator
 {
-	public static class MazeCharacters
+	public static class MazeChar
 	{
 		public const char Wall = '*';
 		public const char Close = 'X';
-		public const char Open = 'O';
+		public const char Open = ' ';
+
+		public const char Intersection = '+';
+		public const char VerticalLine = '|';
+		public const char HorizontalLine = '-';
+
+		public const string HorizontalIntersection = "-+";
 
 		public static char GetCharacter (State state)
 		{

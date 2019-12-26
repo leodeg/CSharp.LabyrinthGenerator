@@ -8,28 +8,29 @@ using System.Threading.Tasks;
 
 namespace LabyrinthGenerator
 {
-	public class AldousBroderGenerator : MazeGenerator
+	public class AldousBroderMazeGenerator
 	{
-		public AldousBroderGenerator (int size) : base (size)
+		public Action OnStartCreateMaze;
+		public Action OnIterationCreateMaze;
+
+		public void CreateMaze (Maze grid)
 		{
+			OnStartCreateMaze?.Invoke ();
 
-		}
-
-
-		public static void CreateMaze (Grid grid)
-		{
 			Random rand = new Random ((int)DateTime.Now.Ticks);
 			Cell currentCell = grid.GetRandomCell ();
 			int unvisited = grid.Size - 1;
 
 			while (unvisited > 0)
 			{
-				List<Cell> neighbours = currentCell.Neighbours ();
+
+				List<Cell> neighbours = currentCell.GetNeighbours ();
 				Cell nextNeighbour = neighbours[rand.Next (neighbours.Count)];
 
 				if (!nextNeighbour.Links.Any ())
 				{
-					currentCell.LinkCells (nextNeighbour, true);
+					OnIterationCreateMaze?.Invoke ();
+					currentCell.AddLink (nextNeighbour, true);
 					unvisited--;
 				}
 

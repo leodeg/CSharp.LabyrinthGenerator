@@ -17,9 +17,12 @@ namespace MazeGeneratorConsole
 			//mazeGenerator.Generate ();
 			//Console.ReadLine ();
 
-			Grid grid = new Grid (6, 10);
+			Maze grid = new Maze (6, 10);
 			Console.WriteLine (grid.ToString ());
-			AldousBroderGenerator.CreateMaze (grid);
+
+			AldousBroderMazeGenerator generator =  new	AldousBroderMazeGenerator ();
+			generator.CreateMaze (grid);
+
 			Console.WriteLine (grid.ToString ());
 
 			State[,] maze = grid.GetMaze ();

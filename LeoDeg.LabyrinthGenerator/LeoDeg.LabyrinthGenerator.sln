@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabyrinthGenerator", "Labyr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabyrinthGeneratorForms", "LabyrinthGeneratorForms\LabyrinthGeneratorForms.csproj", "{47DFBAC7-8A11-4C06-9850-55CAA62313A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGeneratorConsole", "MazeGeneratorConsole\MazeGeneratorConsole.csproj", "{04DC1FC1-D038-4C1D-8152-361EEF98C327}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{47DFBAC7-8A11-4C06-9850-55CAA62313A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47DFBAC7-8A11-4C06-9850-55CAA62313A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47DFBAC7-8A11-4C06-9850-55CAA62313A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04DC1FC1-D038-4C1D-8152-361EEF98C327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04DC1FC1-D038-4C1D-8152-361EEF98C327}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04DC1FC1-D038-4C1D-8152-361EEF98C327}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04DC1FC1-D038-4C1D-8152-361EEF98C327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

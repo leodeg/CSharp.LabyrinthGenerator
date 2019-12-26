@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LabyrinthGeneratorForms"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Maze Generator" Height="800" Width="800" MinHeight="800" MinWidth="800" MaxHeight="800" MaxWidth="800">
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="70px"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBox x:Name="textBoxMazeSize" Width="100" Height="30" ToolTip="Maze Size" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+			<Button x:Name="buttonCreateMaze" Content="Create Maze" Width="100" Height="30" Margin="5 0" Click="buttonCreateMaze_Click"/>
+		</StackPanel>
+
+		<Border Grid.Row="1" BorderThickness="2" BorderBrush="Black" 
+				Height="auto" 
+				Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+			<Canvas x:Name="canvasMazeGrid" 
+				HorizontalAlignment="Stretch" 
+				VerticalAlignment="Stretch" ClipToBounds="True" 
+				Height="auto" 
+				Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+				Background="#FFE4E4E4" SizeChanged="canvasMazeGrid_SizeChanged" />
+		</Border>
+	</Grid>
 </Window>

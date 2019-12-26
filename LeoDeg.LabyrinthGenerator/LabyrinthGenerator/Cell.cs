@@ -8,40 +8,38 @@ using System.Threading.Tasks;
 
 namespace LabyrinthGenerator
 {
+
 	public class Cell
 	{
-		public Cell North { get; set; }
-		public Cell South { get; set; }
-		public Cell East { get; set; }
-		public Cell West { get; set; }
+		public CellNeighbours Neighbours { get; set; }
 
-		public int Row { get; set; }
-		public int Column { get; set; }
+		public int RowIndex { get; set; }
+		public int ColumnIndex { get; set; }
 
 		public List<Cell> Links = new List<Cell> ();
 
 		public Cell (int row, int column)
 		{
-			Row = row;
-			Column = column;
+			RowIndex = row;
+			ColumnIndex = column;
+			Neighbours = new CellNeighbours ();
 		}
 
-		public Cell LinkCells (Cell cell, bool biDirectional)
+		public Cell AddLink (Cell cell, bool bidirectional)
 		{
 			Links.Add (cell);
-			if (biDirectional)
-				cell.LinkCells (this, false);
+			if (bidirectional)
+				cell.AddLink (this, false);
 			return this;
 		}
 
-		public Cell UnlinkCell (Cell cell, bool biDirectional)
+		public Cell RemoveLink (Cell cell, bool bidirectional)
 		{
 			if (Links.Contains (cell))
 			{
 				Links.Remove (cell);
-				if (biDirectional)
-					cell.UnlinkCell (this, false);
-
+				if (bidirectional)
+					cell.RemoveLink (this, false);
 			}
 
 			return this;
@@ -49,23 +47,19 @@ namespace LabyrinthGenerator
 
 		public bool IsLinked (Cell cell)
 		{
-			if (Links.Contains (cell))
-				return true;
-			return false;
+			return Links.Contains (cell);
 		}
 
-		public List<Cell> Neighbours ()
+		public List<Cell> GetNeighbours ()
 		{
 			List<Cell> neighbours = new List<Cell> ();
 
-			if (North != null) neighbours.Add (North);
-			if (South != null) neighbours.Add (South);
-			if (East != null) neighbours.Add (East);
-			if (West != null) neighbours.Add (West);
+			if (Neighbours.North != null) neighbours.Add (Neighbours.North);
+			if (Neighbours.South != null) neighbours.Add (Neighbours.South);
+			if (Neighbours.East != null) neighbours.Add (Neighbours.East);
+			if (Neighbours.West != null) neighbours.Add (Neighbours.West);
 
 			return neighbours;
-
 		}
 	}
-
 }
