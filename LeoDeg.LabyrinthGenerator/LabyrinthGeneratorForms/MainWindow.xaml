@@ -15,6 +15,8 @@
 		<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
 			<TextBox x:Name="textBoxMazeSize" Width="100" Height="30" ToolTip="Maze Size" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 			<Button x:Name="buttonCreateMaze" Content="Create Maze" Width="100" Height="30" Margin="5 0" Click="buttonCreateMaze_Click"/>
+			<Button x:Name="buttonToPng" Content="Save To PNG" Width="100" Height="30" Margin="5 0" Click="buttonToPng_Click"/>
+			<Label x:Name="labelTotalCellsAmount" Content="Cells Amount: 0" VerticalAlignment="Center"/>
 		</StackPanel>
 
 		<Border Grid.Row="1" BorderThickness="2" BorderBrush="Black" 

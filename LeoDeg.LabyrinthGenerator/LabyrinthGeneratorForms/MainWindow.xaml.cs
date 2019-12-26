@@ -1,6 +1,7 @@
 ﻿using LabyrinthGenerator;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -31,7 +32,6 @@ namespace LabyrinthGeneratorForms
 		private int size;
 		private double cellWidth;
 		private double cellHeight;
-		private bool mazeCreated = false;
 
 		public MainWindow ()
 		{
@@ -50,18 +50,46 @@ namespace LabyrinthGeneratorForms
 			//}
 		}
 
+		private void buttonToPng_Click (object sender, RoutedEventArgs e)
+		{
+			Microsoft.Win32.SaveFileDialog saveimg = new Microsoft.Win32.SaveFileDialog ();
+			saveimg.DefaultExt = ".PNG";
+			saveimg.Filter = "Image (.PNG)|*.PNG";
+
+			if (saveimg.ShowDialog () == true)
+				ToImageSource (canvasMazeGrid, saveimg.FileName);
+		}
+
+		public static void ToImageSource (Canvas canvas, string filename)
+		{
+			PngBitmapEncoder encoder = new PngBitmapEncoder ();
+			encoder.Frames.Add (BitmapFrame.Create (CanvasToBitmap (canvas)));
+			using (FileStream file = File.Create (filename))
+			{
+				encoder.Save (file);
+			}
+		}
+
+		private static RenderTargetBitmap CanvasToBitmap (Canvas canvas)
+		{
+			RenderTargetBitmap bmp = new RenderTargetBitmap ((int)canvas.ActualWidth, (int)canvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
+			canvas.Measure (new Size ((int)canvas.ActualWidth, (int)canvas.ActualHeight));
+			canvas.Arrange (new Rect (new Size ((int)canvas.ActualWidth, (int)canvas.ActualHeight)));
+			bmp.Render (canvas);
+			return bmp;
+		}
+
 		private void buttonCreateMaze_Click (object sender, RoutedEventArgs e)
 		{
 			if (canvasMazeGrid.Children.Count > 0)
 				canvasMazeGrid.Children.Clear ();
-			mazeCreated = false;
 
 			GetMazeSize ();
 			CreateMaze (size);
 			DrawMazeCells ();
 			DrawMazeWalls ();
 
-			MessageBox.Show (string.Format ("Maze was draw." + canvasMazeGrid.Children.Count.ToString ()));
+			labelTotalCellsAmount.Content = "Cells Amount: " + canvasMazeGrid.Children.Count.ToString ();
 		}
 
 		private void GetMazeSize ()
@@ -81,7 +109,6 @@ namespace LabyrinthGeneratorForms
 		{
 			mazeGrid = new Maze (size, size);
 			mazeGenerator.CreateMaze (mazeGrid);
-			mazeCreated = true;
 		}
 
 		private void DrawMazeCells ()
