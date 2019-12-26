@@ -84,25 +84,38 @@ namespace LabyrinthGeneratorForms
 			if (canvasMazeGrid.Children.Count > 0)
 				canvasMazeGrid.Children.Clear ();
 
-			GetMazeSize ();
-			CreateMaze (size);
-			DrawMazeCells ();
-			DrawMazeWalls ();
+			EnableButtons (false);
+			if (GetMazeSize ())
+			{
+				CreateMaze (size);
+				DrawMazeCells ();
+				DrawMazeWalls ();
 
-			labelTotalCellsAmount.Content = "Cells Amount: " + canvasMazeGrid.Children.Count.ToString ();
+				labelTotalCellsAmount.Content = "Cells Amount: " + canvasMazeGrid.Children.Count.ToString ();
+			}
+			EnableButtons (true);
 		}
 
-		private void GetMazeSize ()
+		private void EnableButtons (bool isEnable)
+		{
+			textBoxMazeSize.IsEnabled = isEnable;
+			buttonCreateMaze.IsEnabled = isEnable;
+			buttonToPng.IsEnabled = isEnable;
+		}
+
+		private bool GetMazeSize ()
 		{
 			try
 			{
 				size = int.Parse (textBoxMazeSize.Text);
+				return true;
 			}
 			catch (FormatException ex)
 			{
 				MessageBox.Show (string.Format ("Wrong size of a new maze. \nFormat exception: ", ex.Message));
-				throw;
 			}
+
+			return false;
 		}
 
 		private void CreateMaze (int size)
