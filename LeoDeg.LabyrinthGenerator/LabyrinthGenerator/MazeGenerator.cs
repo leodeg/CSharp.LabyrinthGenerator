@@ -15,22 +15,8 @@ namespace LabyrinthGenerator
 		public int MazeSize { get; protected set; }
 		public int WallsNumber { get; protected set; }
 		public int CellsNumber { get; protected set; }
-		public Direction[] Cardinal { get; } = { Direction.North, Direction.East, Direction.West, Direction.South };
-		public Direction[] Opposite { get; } = { Direction.South, Direction.West, Direction.East, Direction.North };
 
-		protected Position CurrentPosition { get; set; }
-		protected const int STEP = 2;
-
-		private Random random;
-
-		private readonly Dictionary<Direction, Position> Locations = new Dictionary<Direction, Position>
-		{
-			{ Direction.North, new Position (-1, 0) },
-			{ Direction.East, new Position (0, 1) },
-			{ Direction.West, new Position (0, -1) },
-			{ Direction.South, new Position (1, 0) }
-		};
-
+		Random random;
 
 		public MazeGenerator (int size)
 		{
@@ -40,70 +26,13 @@ namespace LabyrinthGenerator
 			Maze = new State[MazeSize, MazeSize];
 			AssignWalls ();
 
-			random = new Random ();
+			random = new Random ((int)DateTime.Now.Ticks);
 		}
 
 		public virtual void Generate ()
 		{
 			throw new NotImplementedException ();
 		}
-
-		#region Get Position And Direction
-
-		protected Position GetStartPosition ()
-		{
-			bool found = false;
-			Position position = new Position (-1, -1);
-
-			while (!found)
-			{
-				position.x = random.Next (0, MazeSize - 1);
-				position.y = random.Next (0, MazeSize - 1);
-				if (!(Maze[position.x, position.y] == State.Wall))
-					found = true;
-			}
-
-			return position;
-		}
-
-		protected int GetNewPoint ()
-		{
-			return random.Next (0, MazeSize - 1);
-		}
-
-		protected Position GetPosition (Direction direction)
-		{
-			Position position;
-			Locations.TryGetValue (direction, out position);
-			return position;
-		}
-
-		protected Position GetNewPosition ()
-		{
-			Position position;
-			Locations.TryGetValue (GenerateNewDirection (), out position);
-			return position;
-		}
-
-		protected Direction GenerateNewDirection ()
-		{
-			return (Direction)random.Next (0, 3);
-		}
-
-		protected Position GetOppositePosition (Direction direction)
-		{
-			Position position;
-			Locations.TryGetValue (GetOppositeDirection (direction), out position);
-			return position;
-		}
-
-		protected Direction GetOppositeDirection (Direction direction)
-		{
-			Direction cardinalDirection = Cardinal.First (x => x == direction);
-			return Opposite[(int)cardinalDirection];
-		}
-
-		#endregion
 
 		#region Assign Walls
 

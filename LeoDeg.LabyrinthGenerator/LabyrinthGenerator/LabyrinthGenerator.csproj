@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AldousBroderGenerator.cs" />
-    <Compile Include="Direction.cs" />
+    <Compile Include="Cell.cs" />
+    <Compile Include="Grid.cs" />
     <Compile Include="MazeCharacters.cs" />
     <Compile Include="MazeGenerator.cs" />
     <Compile Include="Position.cs" />
